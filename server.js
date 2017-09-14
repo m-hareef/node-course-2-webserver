@@ -53,7 +53,14 @@ app.get('/about', (req, res) => { // '/' to process the root request
   res.render('about.hbs', {
     pageHeading: 'About Page - Hareef'
   });
+});
 
+app.get('/projects', (req, res) => { // '/' to process the root request
+  // res.send('<h1>About Page</h1>'); //send text or html
+  //To render dynaming content on pages, add second argument as an object of key-value pairs
+  res.render('projects.hbs', {
+    pageHeading: 'Projects Page - Hareef'
+  });
 });
 
 app.get('/mahir', (req, res) => { // '/' to process the root request
