@@ -2,6 +2,8 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
+//get port number from environment variable. deploying to heroku, their port number keeps changing. so to get the port number of the heroku
+const port = process.env.PORT || 3000; //if no port found, if run locally, set the default to 3000
 //To make a express app
 var app = express();
 
@@ -19,7 +21,8 @@ app.use((req, res, next) => {  //the application will continue to run only if we
 });
 //We can use several express middleware, below used if we have a maintenance and show only that page
 app.use((req, res, next) => {
-  res.render('maintenance.hbs');
+  // res.render('maintenance.hbs');
+  next();
 });
 
 //use other HTML file
@@ -63,6 +66,6 @@ app.get('/mahir', (req, res) => { // '/' to process the root request
 // app.listen(3000); //set up on port 3000 http://localhost:3000
 
 //it can tkae a second optional argument
-app.listen(3000, () => {
-  console.log('Server is up on port 3000');
+app.listen(port, () => {
+  console.log(`Server is up on port ${port}`);
 });
